@@ -3,6 +3,7 @@ package sisnp.ifrn.br.apresentacao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,9 @@ public class InfoProjeto extends HttpServlet {
             
             BLNoticia blN = new BLNoticia();
             List<Noticia> noticias = blN.getNoticias(id);
+            
             session.setAttribute("noticias", noticias);
+            //request.setAttribute("listaNoticia", noticias);
             
             for(int i=0; i < noticias.size(); i++)
             {
@@ -47,15 +50,8 @@ public class InfoProjeto extends HttpServlet {
             }
             
             System.out.println("chegou aqui");
-            System.out.println(projeto.getTitulo());
+            //System.out.println(projeto.getTitulo());
             
-            
-            
-            
-            //Projeto p = new Projeto();
-            //p.setTitulo("Projeto x");
-            //p.setDescricao("descricao");
-            //session.setAttribute("projeto", p);
             request.getRequestDispatcher("viewProjeto.jsp").forward(request, response);
         }
        

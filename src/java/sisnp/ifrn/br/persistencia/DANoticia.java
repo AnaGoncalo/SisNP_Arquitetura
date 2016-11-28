@@ -49,24 +49,25 @@ public class DANoticia {
                 ResultSet rsGetNoticia = psGetNoticia.executeQuery();
                 List<Noticia> noticias = new ArrayList();
                 
-                if(rsGetNoticia.next()){
+                while(rsGetNoticia.next()){
                     Noticia noticia = new Noticia();
                     noticia.setIdNoticia(rsGetNoticia.getInt("idNoticia"));
                     noticia.setTituloNoticia(rsGetNoticia.getString("tituloNoticia"));
-                    noticia.setTexto(rsGetNoticia.getString("texto"));
+                    //noticia.setTexto(rsGetNoticia.getString("texto"));
                     noticia.setIdProjeto(rsGetNoticia.getInt("idProjeto"));
                     System.out.println(noticia.getTituloNoticia());
                     noticias.add(noticia);
                     
-                    //libera os recursos
-                    psGetNoticia.close();
-                    
-                    //retorna o projeto
-                    return noticias;
                 }
-            } catch (SQLException ex) {
+                System.out.println(noticias.size());
+                //libera os recursos
+                psGetNoticia.close();
+                return noticias;
+            } 
+            catch (SQLException ex) {
                 Logger.getLogger(DANoticia.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
         return null;
     }

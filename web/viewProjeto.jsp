@@ -4,10 +4,12 @@
     Author     : Ana Gonçalo
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="sisnp.ifrn.br.dominio.Noticia"%>
 <%@page import="sisnp.ifrn.br.dominio.Projeto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%
     Projeto projeto = (Projeto) session.getAttribute("projeto");
@@ -19,14 +21,26 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Visão Geral do Projeto <%= projeto.getTitulo() %></h1>
+        <h1>Sistema gerenciador de Nucleo de Pesquisa</h1>
+        <hr/>
+        
+        <h2><%= projeto.getTitulo() %></h2>
+        
         <h3> Descrição </h3>
         <p><%= projeto.getDescricao() %></p>
+        
         <h3> Noticias </h3>
         <ul>
             <c:forEach var="noticia" items="${noticias}">
-                <li>${noticia.getIdNoticia()}, ${noticia.getTituloNoticia()}</li>
+                <h5>${noticia.getTituloNoticia()}</h5>
+                <p>${noticia.getTexto()}</p>
+                <br/>
             </c:forEach>
+        </ul>
+        
+        <h3>Metas</h3>
+        <ul>
+            
         </ul>
     </body>
 </html>
