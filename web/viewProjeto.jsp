@@ -4,6 +4,7 @@
     Author     : Ana Gonçalo
 --%>
 
+<%@page import="sisnp.ifrn.br.dominio.Meta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="sisnp.ifrn.br.dominio.Noticia"%>
@@ -14,6 +15,7 @@
 <%
     Projeto projeto = (Projeto) session.getAttribute("projeto");
     List<Noticia> noticias = (List<Noticia>) session.getAttribute("noticias");
+    List<Meta> metas = (List<Meta>) session.getAttribute("metas");
 %>
 <html>
     <head>
@@ -23,24 +25,35 @@
     <body>
         <h1>Sistema gerenciador de Nucleo de Pesquisa</h1>
         <hr/>
-        
-        <h2><%= projeto.getTitulo() %></h2>
-        
+
+        <h2><%= projeto.getTitulo()%></h2>
+
         <h3> Descrição </h3>
-        <p><%= projeto.getDescricao() %></p>
-        
+        <p><%= projeto.getDescricao()%></p>
+
+        <h3>Equipe</h3>
+        <ul>
+            <c:forEach var="pesquisador" items="${equipe}">
+                <li>${pesquisador.getNome()}</li>
+                </c:forEach>
+        </ul>
+
         <h3> Noticias </h3>
         <ul>
             <c:forEach var="noticia" items="${noticias}">
-                <h5>${noticia.getTituloNoticia()}</h5>
+                <h4>${noticia.getTituloNoticia()}</h4>
                 <p>${noticia.getTexto()}</p>
-                <br/>
             </c:forEach>
         </ul>
-        
+
         <h3>Metas</h3>
-        <ul>
-            
-        </ul>
+        <ol>
+            <c:forEach var="meta" items="${metas}">
+                <li>
+                    <p>${meta.getNome()}</p>
+                    <p>Entrega: ${meta.getDataEntrega()}</p>
+                </li>
+            </c:forEach>
+        </ol>
     </body>
 </html>

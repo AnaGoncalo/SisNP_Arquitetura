@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sisnp.ifrn.br.dominio.Meta;
 import sisnp.ifrn.br.dominio.Noticia;
+import sisnp.ifrn.br.dominio.Pesquisador;
 import sisnp.ifrn.br.dominio.Projeto;
+import sisnp.ifrn.br.negocio.BLMeta;
 import sisnp.ifrn.br.negocio.BLNoticia;
+import sisnp.ifrn.br.negocio.BLPesquisador;
 import sisnp.ifrn.br.negocio.BLProjeto;
 
 /**
@@ -39,19 +43,26 @@ public class InfoProjeto extends HttpServlet {
             session.setAttribute("projeto", projeto);
             
             BLNoticia blN = new BLNoticia();
-            List<Noticia> noticias = blN.getNoticias(id);
-            
+            List<Noticia> noticias = blN.getNoticias(id);          
             session.setAttribute("noticias", noticias);
-            //request.setAttribute("listaNoticia", noticias);
+            
+            BLMeta blM = new BLMeta();
+            List<Meta> metas = blM.getMetas(id);
+            session.setAttribute("metas", metas);
+            
+            BLPesquisador blP = new BLPesquisador();
+            List<Pesquisador> equipe = blP.getEquipe(id);
+            session.setAttribute("equipe", equipe);
             
             for(int i=0; i < noticias.size(); i++)
             {
                 System.out.println("noticias " + noticias.get(i).getTituloNoticia());
             }
-            
-            System.out.println("chegou aqui");
-            //System.out.println(projeto.getTitulo());
-            
+            for(int i=0; i < metas.size(); i++)
+            {
+                System.out.println("metas " + metas.get(i).getNome());
+            }
+           
             request.getRequestDispatcher("viewProjeto.jsp").forward(request, response);
         }
        

@@ -53,7 +53,7 @@ public class DANoticia {
                     Noticia noticia = new Noticia();
                     noticia.setIdNoticia(rsGetNoticia.getInt("idNoticia"));
                     noticia.setTituloNoticia(rsGetNoticia.getString("tituloNoticia"));
-                    //noticia.setTexto(rsGetNoticia.getString("texto"));
+                    noticia.setTexto(rsGetNoticia.getString("texto"));
                     noticia.setIdProjeto(rsGetNoticia.getInt("idProjeto"));
                     System.out.println(noticia.getTituloNoticia());
                     noticias.add(noticia);
