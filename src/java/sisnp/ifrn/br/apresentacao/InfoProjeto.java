@@ -34,25 +34,24 @@ public class InfoProjeto extends HttpServlet {
         if(idProjeto != null && !idProjeto.isEmpty()){
             // http://localhost:8080/SisNP_Arquitetura/projeto?idProjeto=1
             System.out.println("oi");
-            HttpSession session = request.getSession();
             
             int id = Integer.parseInt(idProjeto);
             
             BLProjeto bl = new BLProjeto();
             Projeto projeto = bl.getProjeto(id);
-            session.setAttribute("projeto", projeto);
+            request.setAttribute("projeto", projeto);
             
             BLNoticia blN = new BLNoticia();
             List<Noticia> noticias = blN.getNoticias(id);          
-            session.setAttribute("noticias", noticias);
+            request.setAttribute("noticias", noticias);
             
             BLMeta blM = new BLMeta();
             List<Meta> metas = blM.getMetas(id);
-            session.setAttribute("metas", metas);
+            request.setAttribute("metas", metas);
             
             BLPesquisador blP = new BLPesquisador();
             List<Pesquisador> equipe = blP.getEquipe(id);
-            session.setAttribute("equipe", equipe);
+            request.setAttribute("equipe", equipe);
             
             for(int i=0; i < noticias.size(); i++)
             {

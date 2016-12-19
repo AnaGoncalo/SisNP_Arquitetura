@@ -13,9 +13,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%
-    Projeto projeto = (Projeto) session.getAttribute("projeto");
-    List<Noticia> noticias = (List<Noticia>) session.getAttribute("noticias");
-    List<Meta> metas = (List<Meta>) session.getAttribute("metas");
+    Projeto projeto = (Projeto) request.getAttribute("projeto");
+    List<Noticia> noticias = (List<Noticia>) request.getAttribute("noticias");
+    List<Meta> metas = (List<Meta>) request.getAttribute("metas");
 %>
 <html>
     <head>
